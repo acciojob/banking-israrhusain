@@ -8,12 +8,14 @@ public class BankAccount {
     private double balance;
     private double minBalance;
     private Random number;
+    private int generatedAccountNumber;
 
     public BankAccount(String name, double balance, double minBalance) {
              this.name=name;
              this.balance=balance;
              this.minBalance=minBalance;
              this.number=new Random();
+             this.generatedAccountNumber=0;
     }
 
     
@@ -60,9 +62,9 @@ public class BankAccount {
         //If it is not possible, throw "Account Number can not be generated" exception
         
             for(int i=0; i<digits; i++){
-                int n=number.nextInt(10)+0;
+                generatedAccountNumber=number.nextInt(10);
             }
-            int num=n;
+            int num=generatedAccountNumber;
             int sumdigit=0;
             while(num!=0){
                 int r=num%10;
@@ -70,7 +72,7 @@ public class BankAccount {
                 num=num/10;
             }
             if(sumdigit==sum){
-                return Integer.toString(n);
+                return Integer.toString(generatedAccountNumber);
             }
             else{
                    throw new Exception("Account Number can not be generated");
